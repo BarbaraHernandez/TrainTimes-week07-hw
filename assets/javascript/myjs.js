@@ -9,6 +9,41 @@ $(document).ready(function(){
     storageBucket: "train-schedule-b1160.appspot.com",
     messagingSenderId: "876468237987"
   };
+
   firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  var name ="";
+  var destination="";
+  var startTime="";
+  var frequency="";
+  var next="";
+  var tRemaining="";
+  var currentTime="";
+
+  function createRow() {
+    $("tbody").append("<tr>" + "</tr>");
+  }
+
+  document.on("click", "button", function sendData(){
+    event.preventDefault();
+
+    //capture input
+    name = $("#train-name").text().trim();
+    destination = $("#train-destination").text().trim();
+    startTime = $("#train-first").text().trim();
+    frequency = $("#train-frequency").text().trim();
+    newTrain = [name, destination, startTime, frequency];
+
+    //function to push to firebase
+    database.ref().push({
+      name: name,
+      destination: destination,
+      firstTrain: startTime,
+      frequency: frequency
+    });
+
+  })
   
 });
