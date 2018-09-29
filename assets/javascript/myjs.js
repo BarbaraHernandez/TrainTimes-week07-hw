@@ -30,20 +30,34 @@ $(document).ready(function(){
     event.preventDefault();
 
     //capture input
-    name = $("#train-name").text().trim();
-    destination = $("#train-destination").text().trim();
-    startTime = $("#train-first").text().trim();
-    frequency = $("#train-frequency").text().trim();
-    newTrain = [name, destination, startTime, frequency];
+    name = $("#train-name").val().trim();
+    destination = $("#train-destination").val().trim();
+    startTime = $("#train-first").val().trim();//need to format with moment
+    frequency = $("#train-frequency").val().trim();
 
-    //function to push to firebase
-    database.ref().push({
-      name: name,
-      destination: destination,
-      firstTrain: startTime,
+    //temporary object
+    var newTrain = {
+      name: name, 
+      destination: destination, 
+      firsTrain: startTime, 
       frequency: frequency
-    });
+    };
+
+    //push to database
+    database.ref().push(newTrain);
+
+    $("#train-name").val("");
+    $("#train-destination").val("");
+    $("#train-first").val("");
+    $("#train-frequency").val("");
+    
+
+  });
+
+  database.ref().on("child_added", function(snapshot){
+    var snapVal = snapshot.val();
 
   })
+
   
 });
