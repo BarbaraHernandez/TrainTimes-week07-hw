@@ -1,15 +1,15 @@
 $(document).ready(function(){
 
-  // Initialize Firebase
+// Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDxervGDaIYj-YjnK_SDK-gGNrz4EgJdmI",
-    authDomain: "train-schedule-b1160.firebaseapp.com",
-    databaseURL: "https://train-schedule-b1160.firebaseio.com",
-    projectId: "train-schedule-b1160",
-    storageBucket: "train-schedule-b1160.appspot.com",
-    messagingSenderId: "876468237987"
+    apiKey: "AIzaSyBgv5NAMfItpVFdMD28bbIFq71GgSTsZyE",
+    authDomain: "train-times-b5024.firebaseapp.com",
+    databaseURL: "https://train-times-b5024.firebaseio.com",
+    projectId: "train-times-b5024",
+    storageBucket: "train-times-b5024.appspot.com",
+    messagingSenderId: "1076573872746"
   };
-
+  
   firebase.initializeApp(config);
 
   var database = firebase.database();
@@ -22,11 +22,8 @@ $(document).ready(function(){
   var tRemaining="";
   var currentTime="";
 
-  function createRow() {
-    $("tbody").append("<tr>" + "</tr>");
-  }
 
-  document.on("click", "button", function sendData(){
+  $(document).on("click", "button", function sendData(){
     event.preventDefault();
 
     //capture input
@@ -35,17 +32,18 @@ $(document).ready(function(){
     startTime = $("#train-first").val().trim();//need to format with moment
     frequency = $("#train-frequency").val().trim();
 
-    //temporary object
+    //temporary object to organize inputs
     var newTrain = {
       name: name, 
       destination: destination, 
-      firsTrain: startTime, 
+      firstTrain: startTime, 
       frequency: frequency
     };
 
     //push to database
     database.ref().push(newTrain);
 
+    //clear user inputs from form
     $("#train-name").val("");
     $("#train-destination").val("");
     $("#train-first").val("");
@@ -56,8 +54,35 @@ $(document).ready(function(){
 
   database.ref().on("child_added", function(snapshot){
     var snapVal = snapshot.val();
+  
+    // Store data as variables for ease
+    var newName = snapVal.name;
+    var newDestination = snapVal.destination;
+    var newFirst = snapVal.firstTrain;
+    var newFrequency = snapVal.frequency;
+  
+    // Format First arrival time
+    // var empStartPretty = moment.unix(empStart).format("MM/DD/YYYY");
+    var newFirstFormatted = moment(newFirst).format//??
+  
+    // Calculate Next Train Time
+    var newNextTrain = "tiem";
+  
+  
+    // Calculate time remaining until Next Train
+    var newTRemaining = "tiem";
 
-  })
-
+    // Create the new row
+    var newRow = $("<tr>").append(
+      $("<td>").text(newName),
+      $("<td>").text(newDestination),
+      $("<td>").text(newFirstFormatted),
+      $("<td>").text(newNextTrain),
+      $("<td>").text(newTRemaining),
+    );
+  
+    // Append the new row to the table
+    $("#schedule-table > tbody").append(newRow);
+  });
   
 });
