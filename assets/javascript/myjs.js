@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-// Initialize Firebase
+  // Initialize Firebase
   var config = {
     apiKey: "AIzaSyBgv5NAMfItpVFdMD28bbIFq71GgSTsZyE",
     authDomain: "train-times-b5024.firebaseapp.com",
@@ -14,23 +14,16 @@ $(document).ready(function(){
 
   var database = firebase.database();
 
-  var name ="";
-  var destination="";
-  var startTime="";
-  var frequency="";
-  var next="";
-  var tRemaining="";
-  var currentTime = moment().format("HH:mm");
 
-
+  //event listener to capture user input
   $(document).on("click", "button", function sendData(){
     event.preventDefault();
 
     //capture input
-    name = $("#train-name").val().trim();
-    destination = $("#train-destination").val().trim();
-    startTime = $("#train-first").val().trim();//need to format with moment
-    frequency = $("#train-frequency").val().trim();
+    var name = $("#train-name").val().trim();
+    var destination = $("#train-destination").val().trim();
+    var startTime = $("#train-first").val().trim();
+    var frequency = $("#train-frequency").val().trim();
 
     //temporary object to organize inputs
     var newTrain = {
@@ -47,11 +40,11 @@ $(document).ready(function(){
     $("#train-name").val("");
     $("#train-destination").val("");
     $("#train-first").val("");
-    $("#train-frequency").val("");
-    
+    $("#train-frequency").val("");    
 
   });
 
+  //event listener to update train schedule
   database.ref().on("child_added", function(snapshot){
     var snapVal = snapshot.val();
   
@@ -67,9 +60,11 @@ $(document).ready(function(){
 
   
     // Calculate Time Elapsed since first train 
-    console.log("time:"+ now);
-    console.log("First Train: "+newFirst);
     var tElapsed = moment().diff(moment(newFirstFormatted), "minutes");
+
+    //log to check values are correct
+    console.log("time:"+ now);
+    console.log("First Train: " + newFirst);
     console.log("elapsed:" + tElapsed);
    
     //calculate how many minutes since the last train (%)
@@ -93,6 +88,7 @@ $(document).ready(function(){
   
     // Append the new row to the table
     $("#schedule-table > tbody").append(newRow);
+
   });
   
 });

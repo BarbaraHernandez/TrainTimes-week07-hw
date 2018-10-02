@@ -8,23 +8,23 @@
     </head>
     <body>
 
-        <!-- megatron -->
+        <!-- header -->
         <div class="card">
-            <div class="jumbotron jumbotron-fluid">
+            <div class="jumbotron jumbotron-fluid" id="full-header">
                 <div class="container">
-                    <h1 class="display-4">Train Tracks</h1>
-                    <p class="lead">all your train times in one place</p>
+                    <h1 class="display-4" id="header-text">Train Tracks</h1>
+                    <p class="lead" id="sub-header">all your train times in one place</p>
                 </div>
             </div>
         </div>
 
         <!-- current schedule -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header customcardheaders">
                 Current Train Schedule
             </div>
             <div class="card-body">
-                <table class="table" id="schedule-table">
+                <table class="table table-sm" id="schedule-table">
                     <thead>
                         <th scope="col">Train Name</th>
                         <th scope="col">Destination</th>
@@ -34,12 +34,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <!-- example structure
-                        <tr>
-                            <td>name</td>
-                            <td>destination</td> etc.
-                        </tr> 
-                        -->
                     </tbody>
                 </table>
             </div>
@@ -47,7 +41,7 @@
 
         <!-- add train -->
         <div class="card" id="last-card">
-            <div class="card-header">
+            <div class="card-header customcardheaders">
                 Add a Train
             </div>        
             <div class="body">      
@@ -68,7 +62,7 @@
                             <label for="train-frequency">Frequency(minutes)</label>
                             <input type="text" class="form-control" id="train-frequency">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
                 </form>
             </div>
         </div>
