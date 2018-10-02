@@ -60,21 +60,27 @@ $(document).ready(function(){
     var newDestination = snapVal.destination;
     var newFirst = snapVal.firstTrain;
     var newFrequency = snapVal.frequency;
-    var now = moment();
+    var now = moment().format("HH:mm");
   
     // Format First arrival time
-    // var empStartPretty = moment.unix(empStart).format("MM/DD/YYYY");
-    var newFirstFormatted = moment(newFirst).format("HH:mm");
+    var newFirstFormatted = moment(newFirst, "HH:mm");
 
+  
+    // Calculate Time Elapsed since first train 
+    console.log("time:"+ now);
+    console.log("First Train: "+newFirst);
+    var tElapsed = moment().diff(moment(newFirstFormatted), "minutes");
+    console.log("elapsed:" + tElapsed);
+   
+    //calculate how many minutes since the last train (%)
     var remainder = tElapsed % newFrequency;
-  
-    // Calculate Next Train Time
-    var tElapsed = moment(newFirstFormatted).diff(now, 'minutes');
-    var newNextTrain = now + newTRemaining;
-  
+    console.log("r: " + remainder);  
   
     // Calculate time remaining until Next Train
     var newTRemaining = newFrequency - remainder;
+
+    //Calculate next train arrival time
+    var newNextTrain = moment().add(newTRemaining, "minutes").format("HH:mm");
 
     // Create the new row
     var newRow = $("<tr>").append(
