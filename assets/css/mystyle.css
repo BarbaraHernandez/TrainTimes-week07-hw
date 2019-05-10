@@ -2,6 +2,7 @@ body{
     width:100%;
     max-width: 2000px;
     margin: auto;
+    background-color: #e2e2e2;
 }
 
 form{
@@ -18,18 +19,20 @@ form{
     font-size: 4rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 400;
+    color: #eeeeee;
 }
 
 
 .card {
-    width: 90%;
+    width: 75%;
     margin:auto;
     margin-top: 20px;
+    margin-bottom:60px;
 }
 
 #full-header {
     text-align: center;
-    color: #ffffff;
+    color: #eeeeee;
     margin-bottom: 0px;
     background-color: #004345; 
     border-radius: 4px;
@@ -37,7 +40,7 @@ form{
 
 .customcardheaders{
     background-color: #206669;
-    color: #ffffff;
+    color: #ececec;
 }
 
 #last-card{
