@@ -5,6 +5,10 @@ body{
     background-color: #e2e2e2;
 }
 
+h5{
+    margin-bottom: 0;
+}
+
 form{
     margin:10px;
 }
@@ -22,7 +26,6 @@ form{
     color: #eeeeee;
 }
 
-
 .card {
     width: 75%;
     margin:auto;
@@ -32,7 +35,7 @@ form{
 
 #full-header {
     text-align: center;
-    color: #eeeeee;
+    color: #f5f5f5;
     margin-bottom: 0px;
     background-color: #004345; 
     border-radius: 4px;
@@ -40,7 +43,7 @@ form{
 
 .customcardheaders{
     background-color: #206669;
-    color: #ececec;
+    color: #eeeeee;
 }
 
 #last-card{
