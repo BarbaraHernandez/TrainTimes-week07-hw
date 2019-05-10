@@ -5,8 +5,16 @@ body{
     background-color: #e2e2e2;
 }
 
+h2{
+    margin: .75rem 0 .75rem 0;
+}
+
 h5{
     margin-bottom: 0;
+}
+
+th{
+    font-weight: 600;
 }
 
 i{
