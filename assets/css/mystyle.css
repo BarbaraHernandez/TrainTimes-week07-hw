@@ -9,6 +9,10 @@ h5{
     margin-bottom: 0;
 }
 
+i{
+    margin: 0 .5rem 0 .5rem;
+}
+
 form{
     margin:10px;
 }
@@ -53,5 +57,11 @@ form{
 #submit-button{
     background-color: #004345;
     border-color: #01383a;
+}
+
+#add-toggle-button{
+    border: none;
+    margin: 0.5rem;
+    box-shadow: none;
 }
 

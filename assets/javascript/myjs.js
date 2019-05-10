@@ -14,9 +14,17 @@ $(document).ready(function(){
 
   var database = firebase.database();
 
+  //event listeners for collapse toggle to change icon
+  $(document).on("click", "#add-toggle-button", function changeIcon(){
+    if (document.getElementById("toggle-icon").className.match("far fa-plus-square")) {
+      document.getElementById("toggle-icon").className = "far fa-minus-square";
+    } else if (document.getElementById("toggle-icon").className.match("far fa-minus-square")) {
+      document.getElementById("toggle-icon").className = "far fa-plus-square";
+    }
+  });
 
   //event listener to capture user input
-  $(document).on("click", "button", function sendData(){
+  $(document).on("click", "#submit-button", function sendData(){
     event.preventDefault();
 
     //capture input
