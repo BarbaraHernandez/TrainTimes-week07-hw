@@ -62,9 +62,14 @@ form{
     margin-bottom:20px;
 }
 
-#submit-button{
+.custom-button{
     background-color: #004345;
     border-color: #01383a;
+}
+
+.custom-button:hover{
+    background-color: #206669;
+    border-color: #004345;
 }
 
 #add-toggle-button{

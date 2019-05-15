@@ -16,11 +16,23 @@ $(document).ready(function(){
 
   //event listeners for collapse toggle to change icon
   $(document).on("click", "#add-toggle-button", function changeIcon(){
+    event.preventDefault();
     if (document.getElementById("toggle-icon").className.match("far fa-plus-square")) {
       document.getElementById("toggle-icon").className = "far fa-minus-square";
     } else if (document.getElementById("toggle-icon").className.match("far fa-minus-square")) {
       document.getElementById("toggle-icon").className = "far fa-plus-square";
     }
+  });
+
+  //event listener to delete a train entry
+  $(document).on("click", "button[type=delete]", function deleteEntry(){
+    event.preventDefault();
+    var selectID= this.parentElement.parentElement.id;
+    // console.log("to delete:" + selectID);
+    database.ref().child(selectID).remove()
+      .then(function clearRow (){
+        $("#" + selectID).hide(1000);
+      });
   });
 
   //event listener to capture user input
@@ -61,6 +73,7 @@ $(document).ready(function(){
     var newDestination = snapVal.destination;
     var newFirst = snapVal.firstTrain;
     var newFrequency = snapVal.frequency;
+    var newID = snapshot.key;
     var now = moment().format("HH:mm");
   
     // Format First arrival time
@@ -92,10 +105,15 @@ $(document).ready(function(){
       $("<td>").text(newFrequency),
       $("<td>").text(newNextTrain),
       $("<td>").text(newTRemaining),
+      $("<td>").html("<button type=\"delete\" class=\"btn btn-primary custom-button\">delete</button>"),
     );
+
+    // Add ID to row (to facilitate delete)
+    var specificRow = newRow.prop("id", newID);
+    // console.log("train id:" + snapshot.key);
   
     // Append the new row to the table
-    $("#schedule-table > tbody").append(newRow);
+    $("#schedule-table > tbody").append(specificRow);
 
   });
   
